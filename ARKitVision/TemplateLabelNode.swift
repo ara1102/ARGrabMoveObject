@@ -1,5 +1,5 @@
 /*
-See LICENSE folder for this sample’s licensing information.
+See the LICENSE.txt file for this sample’s licensing information.
 
 Abstract:
 Instantiates styled label nodes based on a template node in a scene file.
@@ -7,7 +7,6 @@ Instantiates styled label nodes based on a template node in a scene file.
 
 import SpriteKit
 
-/// - Tag: TemplateLabelNode
 class TemplateLabelNode: SKReferenceNode {
     
     private let text: String

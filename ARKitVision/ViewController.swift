@@ -1,5 +1,5 @@
 /*
-See LICENSE folder for this sample’s licensing information.
+See the LICENSE.txt file for this sample’s licensing information.
 
 Abstract:
 Main view controller for the ARKitVision sample.
@@ -24,7 +24,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSKViewDel
                     let configuration = MLModelConfiguration()
                     return try Inceptionv3(configuration: configuration)
                 } catch {
-                    fatalError("Couldn't create Inceptionv3 due to: \(error)")
+                    fatalError("Couldn't create StyleTransferModel due to: \(error)")
                 }
             }()
             return _inceptionv3Model
@@ -74,7 +74,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSKViewDel
     // MARK: - ARSessionDelegate
     
     // Pass camera frames received from ARKit to Vision (when not already processing one)
-    /// - Tag: ConsumeARFrames
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
         // Do not enqueue other buffers for processing while another Vision task is still running.
         // The camera stream has only a finite amount of buffers available; holding too many buffers for analysis would starve the camera.
@@ -90,7 +89,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSKViewDel
     // MARK: - Vision classification
     
     // Vision classification request and model
-    /// - Tag: ClassificationRequest
     private lazy var classificationRequest: VNCoreMLRequest = {
         do {
             // Instantiate the model from its generated Swift class.
@@ -118,7 +116,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSKViewDel
     private let visionQueue = DispatchQueue(label: "com.example.apple-samplecode.ARKitVision.serialVisionQueue")
     
     // Run the Vision+ML classifier on the current image buffer.
-    /// - Tag: ClassifyCurrentImage
     private func classifyCurrentImage() {
         // Most computer vision tasks are not rotation agnostic so it is important to pass in the orientation of the image with respect to device.
         let orientation = CGImagePropertyOrientation(UIDevice.current.orientation)
@@ -140,7 +137,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSKViewDel
     private var confidence: VNConfidence = 0.0
     
     // Handle completion of the Vision request and choose results to display.
-    /// - Tag: ProcessClassifications
     func processClassifications(for request: VNRequest, error: Error?) {
         guard let results = request.results else {
             print("Unable to classify image.\n\(error!.localizedDescription)")
@@ -179,7 +175,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSKViewDel
     private var anchorLabels = [UUID: String]()
     
     // When the user taps, add an anchor associated with the current classification result.
-    /// - Tag: PlaceLabelAtLocation
     @IBAction func placeLabelAtLocation(sender: UITapGestureRecognizer) {
         let hitLocationInView = sender.location(in: sceneView)
         let hitTestResults = sceneView.hitTest(hitLocationInView, types: [.featurePoint, .estimatedHorizontalPlane])
@@ -195,7 +190,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSKViewDel
     }
     
     // When an anchor is added, provide a SpriteKit node for it and set its text to the classification label.
-    /// - Tag: UpdateARContent
     func view(_ view: ARSKView, didAdd node: SKNode, for anchor: ARAnchor) {
         guard let labelText = anchorLabels[anchor.identifier] else {
             fatalError("missing expected associated label for anchor")

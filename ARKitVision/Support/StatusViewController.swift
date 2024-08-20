@@ -1,5 +1,5 @@
 /*
-See LICENSE folder for this sample’s licensing information.
+See the LICENSE.txt file for this sample’s licensing information.
 
 Abstract:
 Utility class for showing messages above the AR view.
@@ -12,7 +12,6 @@ import ARKit
  Displayed at the top of the main interface of the app that allows users to see
  the status of the AR experience, as well as the ability to control restarting
  the experience altogether.
- - Tag: StatusViewController
  */
 class StatusViewController: UIViewController {
     // MARK: - Types
