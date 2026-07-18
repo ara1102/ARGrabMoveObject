@@ -9,7 +9,7 @@ import SpriteKit
 
 class TemplateLabelNode: SKReferenceNode {
     
-    private let text: String
+    let text: String
     
     init(text: String) {
         self.text = text
