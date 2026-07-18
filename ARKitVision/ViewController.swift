@@ -24,6 +24,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     
     // MARK: - Hand Interaction Properties
     private var isCurrentlyPinched = false
+    private var framesSincePinchLost = 0
     private var wasGrabbing = false
     private var currentlyGrabbedText: String?
     private var draggingLabelNode: SCNNode?
@@ -245,8 +246,15 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
             // Hysteresis using relative distance
             if !isCurrentlyPinched && relativeDistance < 0.35 {
                 isCurrentlyPinched = true
+                framesSincePinchLost = 0
             } else if isCurrentlyPinched && relativeDistance > 0.65 {
-                isCurrentlyPinched = false
+                framesSincePinchLost += 1
+                if framesSincePinchLost > 8 { // Debounce: ~0.13 seconds at 60fps
+                    isCurrentlyPinched = false
+                }
+            } else if isCurrentlyPinched && relativeDistance <= 0.65 {
+                // If it falls back into the pinched zone or stays in hysteresis zone, reset the counter
+                framesSincePinchLost = 0
             }
             
             // Use the Palm Center (midpoint between Wrist and Middle Knuckle) for the 3D interaction point!
@@ -256,8 +264,15 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
                 y: (wrist.location.y + middleBase.location.y) / 2.0
             )
         } else {
-            // Hand is lost or not confident, release grab
-            isCurrentlyPinched = false
+            // Hand is lost or not confident. If grabbing, debounce before dropping!
+            if isCurrentlyPinched {
+                framesSincePinchLost += 1
+                if framesSincePinchLost > 8 {
+                    isCurrentlyPinched = false
+                }
+            } else {
+                isCurrentlyPinched = false
+            }
         }
         
         // Update the UI label based on the action
@@ -336,6 +351,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         }
         
         guard let pinchMid = normalizedPinchMidpoint, let frame = sceneView.session.currentFrame else {
+            if !isGrabbing && wasGrabbing {
+                releaseGrabbedObject()
+            }
             wasGrabbing = isGrabbing
             handCursorNode?.isHidden = true
             return
@@ -454,23 +472,26 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
             }
         } else if !isGrabbing && wasGrabbing {
             // Dropped: DESTROY the object and show an eating modal
-            if let grabbedText = currentlyGrabbedText {
-                
-                draggingLabelNode?.removeFromParentNode()
-                draggingLabelNode = nil
-                
-                // Show the "Eating" alert
-                let alert = UIAlertController(title: "Yum!", message: "You ate the \(grabbedText)!", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Delicious", style: .default, handler: nil))
-                
-                // Present on the main thread (we are already in DispatchQueue.main.async here)
-                self.present(alert, animated: true, completion: nil)
-                
-                currentlyGrabbedText = nil
-            }
+            releaseGrabbedObject()
         }
         
         wasGrabbing = isGrabbing
+    }
+    
+    private func releaseGrabbedObject() {
+        if let grabbedText = currentlyGrabbedText {
+            draggingLabelNode?.removeFromParentNode()
+            draggingLabelNode = nil
+            
+            // Show the "Eating" alert
+            let alert = UIAlertController(title: "Yum!", message: "You ate the \(grabbedText)!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Delicious", style: .default, handler: nil))
+            
+            // Present on the main thread (we are already in DispatchQueue.main.async here)
+            self.present(alert, animated: true, completion: nil)
+            
+            currentlyGrabbedText = nil
+        }
     }
     
     // Show the classification results in the UI.
