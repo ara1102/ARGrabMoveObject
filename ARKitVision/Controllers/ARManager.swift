@@ -323,6 +323,10 @@ class ARManager: NSObject, ObservableObject, ARSessionDelegate {
         }
         
         wasGrabbing = isGrabbing
+        
+        if isGrabbing, let apple = draggedAppleEntity {
+            updateButterflyFlight(for: apple)
+        }
     }
     
     private func releaseGrabbedObject() {
@@ -340,6 +344,30 @@ class ARManager: NSObject, ObservableObject, ARSessionDelegate {
                 }
             }
         }
+    }
+    
+    private func updateButterflyFlight(for apple: Entity) {
+        guard let butterfly = animalEntity, let camera = cameraAnchor else { return }
+        
+        let cameraPos = camera.position(relativeTo: nil)
+        let applePos = apple.position(relativeTo: nil)
+        
+        // Direction from camera to apple
+        let direction = normalize(applePos - cameraPos)
+        
+        // Target is 5cm behind the apple (further from camera)
+        let targetPos = applePos + (direction * 0.05)
+        
+        let currentPos = butterfly.position(relativeTo: nil)
+        // Smoothly interpolate position for continuous flight
+        let newPos = currentPos + (targetPos - currentPos) * 0.1
+        
+        butterfly.setPosition(newPos, relativeTo: nil)
+        
+        // RealityKit's look(at:) points -Z at the target.
+        // The butterfly asset's forward is +Z, so we rotate 180 degrees around Y.
+        butterfly.look(at: applePos, from: newPos, relativeTo: nil)
+        butterfly.transform.rotation *= simd_quatf(angle: .pi, axis: [0, 1, 0])
     }
     
     // MARK: - Spawning Logic
