@@ -4,29 +4,22 @@ import RealityKit
 /// Standalone scaffold: tap a detected floor to place the butterfly, then tap
 /// "Call" to bring it to a point in front of the camera. Independent of the
 /// existing SceneKit ViewController in this project.
-struct AnimalCallScene: View {
-    @StateObject private var manager = DemoARManager()
-    private let callAnimalController = CallAnimalController()
+    struct AnimalCallScene: View {
+        @ObservedObject var manager: ARManager
+        private let callAnimalController = CallAnimalController()
+    
+        @State private var isSpawning = false
+    
+        var body: some View {
+            ZStack {
+                // The shared ARViewContainer is in ContentView. We just provide a full-screen tap target.
+                Color.clear
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        placeButterflyIfNeeded()
+                    }
+                    .edgesIgnoringSafeArea(.all)
 
-    @State private var isSpawning = false
-
-    var body: some View {
-        ZStack {
-            RealityView { content in
-                let camAnchor = AnchorEntity(.camera)
-                content.add(camAnchor)
-                manager.cameraAnchor = camAnchor
-
-                let planeAnchor = AnchorEntity(.plane(.horizontal, classification: .any, minimumBounds: SIMD2<Float>(0.2, 0.2)))
-                planeAnchor.addChild(manager.parentContainer)
-                content.add(planeAnchor)
-
-                content.camera = .spatialTracking
-            }
-            .onTapGesture {
-                placeButterflyIfNeeded()
-            }
-            .edgesIgnoringSafeArea(.all)
 
             VStack {
                 Spacer()
@@ -77,7 +70,7 @@ struct AnimalCallScene: View {
         manager.parentContainer.position = [localPos.x, 0, localPos.z]
 
         isSpawning = true
-        Task {
+        Task { @MainActor in
             defer { isSpawning = false }
             do {
                 let butterfly = try await Entity(named: "butterfly", in: nil)
@@ -99,5 +92,5 @@ struct AnimalCallScene: View {
 }
 
 #Preview {
-    AnimalCallScene()
+    AnimalCallScene(manager: ARManager())
 }

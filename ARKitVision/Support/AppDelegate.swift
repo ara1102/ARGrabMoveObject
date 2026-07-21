@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // scene instead. ViewController.swift is left in the project, just
         // unused, so reverting to it later just means reverting this method.
         let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = UIHostingController(rootView: AnimalCallScene())
+        window.rootViewController = UIHostingController(rootView: ContentView())
         window.makeKeyAndVisible()
         self.window = window
 

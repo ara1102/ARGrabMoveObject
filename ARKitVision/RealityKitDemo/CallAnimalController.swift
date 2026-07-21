@@ -16,7 +16,7 @@ class CallAnimalController {
     /// loop) with no separate idle/flying clip, so this function never plays
     /// or stops animations — the loop keeps running underneath, started once
     /// at placement time and never touched again.
-    func callAnimal(manager: DemoARManager) {
+    func callAnimal(manager: ARManager) {
         guard let animal = manager.animalEntity,
               let camera = manager.cameraAnchor else { return }
 
