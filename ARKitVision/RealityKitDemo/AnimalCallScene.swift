@@ -69,13 +69,21 @@ import RealityKit
         let localPos = planeAnchor.convert(position: intersectionWorld, from: nil)
         manager.parentContainer.position = [localPos.x, 0, localPos.z]
 
+        // Spawn height as a fraction of the camera's height above the floor
+        // at this moment, instead of one fixed number for everyone — scales
+        // naturally to whoever is placing it (a kid's hand height vs an
+        // adult's), same reasoning as the tilt-responsive call height.
+        // Clamped so an unusually high/low hold still gives a sane result.
+        let cameraHeightAboveFloor = camPos.y - planeHeight
+        let spawnHeight = min(max(cameraHeightAboveFloor * 0.3, 0.2), 0.6)
+
         isSpawning = true
         Task { @MainActor in
             defer { isSpawning = false }
             do {
                 let butterfly = try await Entity(named: "butterfly", in: nil)
                 butterfly.scale = SIMD3<Float>(repeating: 0.001)
-                butterfly.position = [0, 0.35, 0]
+                butterfly.position = [0, spawnHeight, 0]
                 manager.parentContainer.addChild(butterfly)
 
                 for animation in butterfly.availableAnimations {
