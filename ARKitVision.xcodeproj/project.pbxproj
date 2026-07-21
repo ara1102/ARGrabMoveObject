@@ -8,33 +8,36 @@
 
 /* Begin PBXBuildFile section */
 		11BEDD9A201A8EBA00B93233 /* TemplateLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BEDD99201A8EBA00B93233 /* TemplateLabelNode.swift */; };
+		5104A2EEA9CE4673ABDC9F9D /* CallAnimalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C24C4AB6C4D38B46648D9 /* CallAnimalController.swift */; };
 		62800B28300DCACD009658C0 /* flower_habitat.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 62800B27300DCACD009658C0 /* flower_habitat.usdz */; };
 		62800B29300DCACD009658C0 /* butterfly.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 62800B25300DCACD009658C0 /* butterfly.usdz */; };
 		62800B2A300DCACD009658C0 /* butterfly_idle.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 62800B26300DCACD009658C0 /* butterfly_idle.usdz */; };
 		68612C321F7B0746002209A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68612C311F7B0746002209A3 /* AppDelegate.swift */; };
-		68612C361F7B0746002209A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68612C351F7B0746002209A3 /* ViewController.swift */; };
 		68612C3B1F7B0746002209A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68612C3A1F7B0746002209A3 /* Assets.xcassets */; };
 		68612C3E1F7B0746002209A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68612C3C1F7B0746002209A3 /* LaunchScreen.storyboard */; };
 		68612C471F7B108A002209A3 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 68612C461F7B108A002209A3 /* Inceptionv3.mlmodel */; };
 		68A81B54200FDD8A00A4ABCA /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A81B53200FDD8A00A4ABCA /* Utilities.swift */; };
 		68A81B56200FE12E00A4ABCA /* LabelScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 68A81B55200FE12E00A4ABCA /* LabelScene.sks */; };
 		69F89957300AF6AA007176DF /* Apple.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 69F89956300AF6AA007176DF /* Apple.usdz */; };
+		69F8995F300F17E8007176DF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F8995D300F17E8007176DF /* ContentView.swift */; };
+		69F89960300F17E8007176DF /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F8995C300F17E8007176DF /* ARViewContainer.swift */; };
+		69F89961300F17E8007176DF /* AppMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F8995A300F17E8007176DF /* AppMode.swift */; };
+		69F89962300F17E8007176DF /* ARManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F89958300F17E8007176DF /* ARManager.swift */; };
 		841E31001FC286F900F639ED /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E30FF1FC286F800F639ED /* StatusViewController.swift */; };
 		84E14DE61F943834006B5204 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E14DE31F943834006B5204 /* Main.storyboard */; };
 		9D4202BFA9CE4A1182533336 /* DemoARManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3906119F91F49BE863CC1BF /* DemoARManager.swift */; };
-		5104A2EEA9CE4673ABDC9F9D /* CallAnimalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C24C4AB6C4D38B46648D9 /* CallAnimalController.swift */; };
 		E4A82527BE0D4BFC8109D6A9 /* AnimalCallScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8C65DB42FE47EE95FEAF18 /* AnimalCallScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		11BEDD99201A8EBA00B93233 /* TemplateLabelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateLabelNode.swift; sourceTree = "<group>"; };
 		30180B1C1F82EB0900BE66A3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		4F1C24C4AB6C4D38B46648D9 /* CallAnimalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallAnimalController.swift; sourceTree = "<group>"; };
 		62800B25300DCACD009658C0 /* butterfly.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = butterfly.usdz; sourceTree = "<group>"; };
 		62800B26300DCACD009658C0 /* butterfly_idle.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = butterfly_idle.usdz; sourceTree = "<group>"; };
 		62800B27300DCACD009658C0 /* flower_habitat.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = flower_habitat.usdz; sourceTree = "<group>"; };
 		68612C2E1F7B0746002209A3 /* ARKitVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARKitVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68612C311F7B0746002209A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		68612C351F7B0746002209A3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		68612C3A1F7B0746002209A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		68612C3D1F7B0746002209A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		68612C3F1F7B0746002209A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -42,12 +45,15 @@
 		68A81B53200FDD8A00A4ABCA /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		68A81B55200FE12E00A4ABCA /* LabelScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LabelScene.sks; sourceTree = "<group>"; };
 		69F89956300AF6AA007176DF /* Apple.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = Apple.usdz; sourceTree = "<group>"; };
+		69F89958300F17E8007176DF /* ARManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARManager.swift; sourceTree = "<group>"; };
+		69F8995A300F17E8007176DF /* AppMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMode.swift; sourceTree = "<group>"; };
+		69F8995C300F17E8007176DF /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
+		69F8995D300F17E8007176DF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		841E30FF1FC286F800F639ED /* StatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		84E14DE31F943834006B5204 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AA0F54896CD740BF34330C13 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		B4002373702A69CB6F301FFC /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		D3906119F91F49BE863CC1BF /* DemoARManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoARManager.swift; sourceTree = "<group>"; };
-		4F1C24C4AB6C4D38B46648D9 /* CallAnimalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallAnimalController.swift; sourceTree = "<group>"; };
 		FE8C65DB42FE47EE95FEAF18 /* AnimalCallScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalCallScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,6 +68,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		225E773EC9FD404082E15201 /* RealityKitDemo */ = {
+			isa = PBXGroup;
+			children = (
+				D3906119F91F49BE863CC1BF /* DemoARManager.swift */,
+				4F1C24C4AB6C4D38B46648D9 /* CallAnimalController.swift */,
+				FE8C65DB42FE47EE95FEAF18 /* AnimalCallScene.swift */,
+			);
+			path = RealityKitDemo;
+			sourceTree = "<group>";
+		};
 		57468F50457ABBE6E3069E11 /* LICENSE */ = {
 			isa = PBXGroup;
 			children = (
@@ -93,13 +109,40 @@
 		68612C301F7B0746002209A3 /* ARKitVision */ = {
 			isa = PBXGroup;
 			children = (
-				68612C351F7B0746002209A3 /* ViewController.swift */,
 				11BEDD99201A8EBA00B93233 /* TemplateLabelNode.swift */,
 				225E773EC9FD404082E15201 /* RealityKitDemo */,
 				841E31011FC287CA00F639ED /* Resources */,
 				841E30FE1FC286E800F639ED /* Support */,
+				69F89959300F17E8007176DF /* Controllers */,
+				69F8995B300F17E8007176DF /* Models */,
+				69F8995E300F17E8007176DF /* Views */,
 			);
 			path = ARKitVision;
+			sourceTree = "<group>";
+		};
+		69F89959300F17E8007176DF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				69F89958300F17E8007176DF /* ARManager.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		69F8995B300F17E8007176DF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				69F8995A300F17E8007176DF /* AppMode.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		69F8995E300F17E8007176DF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				69F8995C300F17E8007176DF /* ARViewContainer.swift */,
+				69F8995D300F17E8007176DF /* ContentView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		841E30FE1FC286E800F639ED /* Support */ = {
@@ -135,16 +178,6 @@
 				B4002373702A69CB6F301FFC /* SampleCode.xcconfig */,
 			);
 			name = Configuration;
-			sourceTree = "<group>";
-		};
-		225E773EC9FD404082E15201 /* RealityKitDemo */ = {
-			isa = PBXGroup;
-			children = (
-				D3906119F91F49BE863CC1BF /* DemoARManager.swift */,
-				4F1C24C4AB6C4D38B46648D9 /* CallAnimalController.swift */,
-				FE8C65DB42FE47EE95FEAF18 /* AnimalCallScene.swift */,
-			);
-			path = RealityKitDemo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,11 +259,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68612C361F7B0746002209A3 /* ViewController.swift in Sources */,
 				11BEDD9A201A8EBA00B93233 /* TemplateLabelNode.swift in Sources */,
 				68612C471F7B108A002209A3 /* Inceptionv3.mlmodel in Sources */,
 				68A81B54200FDD8A00A4ABCA /* Utilities.swift in Sources */,
 				841E31001FC286F900F639ED /* StatusViewController.swift in Sources */,
+				69F8995F300F17E8007176DF /* ContentView.swift in Sources */,
+				69F89960300F17E8007176DF /* ARViewContainer.swift in Sources */,
+				69F89961300F17E8007176DF /* AppMode.swift in Sources */,
+				69F89962300F17E8007176DF /* ARManager.swift in Sources */,
 				68612C321F7B0746002209A3 /* AppDelegate.swift in Sources */,
 				9D4202BFA9CE4A1182533336 /* DemoARManager.swift in Sources */,
 				5104A2EEA9CE4673ABDC9F9D /* CallAnimalController.swift in Sources */,
@@ -375,7 +411,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5Y7SGX7UQ9;
+				DEVELOPMENT_TEAM = GHY9MX22BB;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				INFOPLIST_FILE = ARKitVision/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
@@ -398,7 +434,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5Y7SGX7UQ9;
+				DEVELOPMENT_TEAM = GHY9MX22BB;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				INFOPLIST_FILE = ARKitVision/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
