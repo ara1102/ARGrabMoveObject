@@ -6,8 +6,7 @@ import RealityKit
 /// existing SceneKit ViewController in this project.
     struct AnimalCallScene: View {
         @ObservedObject var manager: ARManager
-        private let callAnimalController = CallAnimalController()
-    
+
         @State private var isSpawning = false
     
         var body: some View {
@@ -23,21 +22,7 @@ import RealityKit
 
             VStack {
                 Spacer()
-                if manager.isPlaced {
-                    // DEV-ONLY TRIGGER: stands in for the real gesture-based
-                    // call trigger a teammate is building separately. Not
-                    // final UI — deliberately unstyled/undesigned so it's
-                    // obvious this is scaffolding, not something to polish or
-                    // ship. Swap this button out for the real trigger; leave
-                    // `callAnimalController.callAnimal(manager:)` as-is.
-                    Button("DEV: Call") {
-                        callAnimalController.callAnimal(manager: manager)
-                    }
-                    .padding(.horizontal, 30)
-                    .padding(.vertical, 14)
-                    .background(Color.yellow.opacity(0.9), in: Capsule())
-                    .foregroundColor(.black)
-                } else {
+                if !manager.isPlaced {
                     Text("Tap the floor to place the butterfly")
                         .padding()
                         .background(.thinMaterial, in: Capsule())
