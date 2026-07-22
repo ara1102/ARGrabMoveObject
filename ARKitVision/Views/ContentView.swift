@@ -47,11 +47,15 @@ struct ContentView: View {
                 if arManager.currentMode == .animalCall {
                     AnimalCallScene(manager: arManager)
                 }
+                
+                if arManager.currentMode == .feeding {
+                    FeedingScene(manager: arManager)
+                }
 
                 
                 // Mode Switcher
                 Picker("App Mode", selection: $arManager.currentMode) {
-                    ForEach(AppMode.allCases) { mode in
+                    ForEach(AppMode.allCases.filter { $0.isVisible }) { mode in
                         Text(mode.rawValue).tag(mode)
                     }
                 }
