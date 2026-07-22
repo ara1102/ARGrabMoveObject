@@ -41,6 +41,10 @@ class ARManager: NSObject, ObservableObject, ARSessionDelegate {
         return request
     }()
     
+    // Call-the-animal via hand gesture
+    private let handCurlCallController = HandCurlCallController()
+    private let callAnimalController = CallAnimalController()
+
     // Pinch Hysteresis properties
     private var isCurrentlyPinched = false
     private var framesSincePinchLost = 0
@@ -123,6 +127,19 @@ class ARManager: NSObject, ObservableObject, ARSessionDelegate {
             return
         }
         
+        // Independent of the pinch logic below (different fingers, different
+        // pose) — fires once when a held curl/beckon gesture is confirmed.
+        // Only acts in Animal Call mode — the mode check happens on the main
+        // thread (like every other currentMode read in this file), even
+        // though the gesture detection itself runs on visionQueue.
+        let shouldCallAnimal = handCurlCallController.update(hand: hand)
+        if shouldCallAnimal {
+            DispatchQueue.main.async { [weak self] in
+                guard let self, self.currentMode == .animalCall else { return }
+                self.callAnimalController.callAnimal(manager: self)
+            }
+        }
+
         var pointsToDraw = [CGPoint]()
         if let recognizedPoints = try? hand.recognizedPoints(.all) {
             for (_, point) in recognizedPoints {
@@ -312,7 +329,7 @@ class ARManager: NSObject, ObservableObject, ARSessionDelegate {
         if let draggedNode = draggedAppleEntity {
             draggedNode.removeFromParent()
             self.draggedAppleEntity = nil
-            
+
             // Alert user (best done via publishing state, or direct UI Window access for simplicity here)
             DispatchQueue.main.async {
                 if let windowScene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,

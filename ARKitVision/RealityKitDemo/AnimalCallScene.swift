@@ -6,8 +6,7 @@ import RealityKit
 /// existing SceneKit ViewController in this project.
     struct AnimalCallScene: View {
         @ObservedObject var manager: ARManager
-        private let callAnimalController = CallAnimalController()
-    
+
         @State private var isSpawning = false
     
         var body: some View {
@@ -23,21 +22,7 @@ import RealityKit
 
             VStack {
                 Spacer()
-                if manager.isPlaced {
-                    // DEV-ONLY TRIGGER: stands in for the real gesture-based
-                    // call trigger a teammate is building separately. Not
-                    // final UI — deliberately unstyled/undesigned so it's
-                    // obvious this is scaffolding, not something to polish or
-                    // ship. Swap this button out for the real trigger; leave
-                    // `callAnimalController.callAnimal(manager:)` as-is.
-                    Button("DEV: Call") {
-                        callAnimalController.callAnimal(manager: manager)
-                    }
-                    .padding(.horizontal, 30)
-                    .padding(.vertical, 14)
-                    .background(Color.yellow.opacity(0.9), in: Capsule())
-                    .foregroundColor(.black)
-                } else {
+                if !manager.isPlaced {
                     Text("Tap the floor to place the butterfly")
                         .padding()
                         .background(.thinMaterial, in: Capsule())
@@ -69,13 +54,21 @@ import RealityKit
         let localPos = planeAnchor.convert(position: intersectionWorld, from: nil)
         manager.parentContainer.position = [localPos.x, 0, localPos.z]
 
+        // Spawn height as a fraction of the camera's height above the floor
+        // at this moment, instead of one fixed number for everyone — scales
+        // naturally to whoever is placing it (a kid's hand height vs an
+        // adult's), same reasoning as the tilt-responsive call height.
+        // Clamped so an unusually high/low hold still gives a sane result.
+        let cameraHeightAboveFloor = camPos.y - planeHeight
+        let spawnHeight = min(max(cameraHeightAboveFloor * 0.3, 0.2), 0.6)
+
         isSpawning = true
         Task { @MainActor in
             defer { isSpawning = false }
             do {
                 let butterfly = try await Entity(named: "butterfly", in: nil)
                 butterfly.scale = SIMD3<Float>(repeating: 0.001)
-                butterfly.position = [0, 0.35, 0]
+                butterfly.position = [0, spawnHeight, 0]
                 manager.parentContainer.addChild(butterfly)
 
                 for animation in butterfly.availableAnimations {
