@@ -24,6 +24,11 @@
 		69F89960300F17E8007176DF /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F8995C300F17E8007176DF /* ARViewContainer.swift */; };
 		69F89961300F17E8007176DF /* AppMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F8995A300F17E8007176DF /* AppMode.swift */; };
 		69F89962300F17E8007176DF /* ARManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F89958300F17E8007176DF /* ARManager.swift */; };
+		69F89964301052D8007176DF /* flower_food.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 69F89963301052D8007176DF /* flower_food.usdz */; };
+		69F89966301058D2007176DF /* FeedingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F89965301058D2007176DF /* FeedingScene.swift */; };
+		69F89968301058DE007176DF /* FeedingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F89967301058DE007176DF /* FeedingController.swift */; };
+		69F8996B30105C4F007176DF /* ARManager+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F8996930105C4F007176DF /* ARManager+Debug.swift */; };
+		69F8996C30105C4F007176DF /* ARManager+Interact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F8996A30105C4F007176DF /* ARManager+Interact.swift */; };
 		841E31001FC286F900F639ED /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E30FF1FC286F800F639ED /* StatusViewController.swift */; };
 		84E14DE61F943834006B5204 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E14DE31F943834006B5204 /* Main.storyboard */; };
 		9D4202BFA9CE4A1182533336 /* DemoARManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3906119F91F49BE863CC1BF /* DemoARManager.swift */; };
@@ -52,6 +57,11 @@
 		69F8995A300F17E8007176DF /* AppMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMode.swift; sourceTree = "<group>"; };
 		69F8995C300F17E8007176DF /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
 		69F8995D300F17E8007176DF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		69F89963301052D8007176DF /* flower_food.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = flower_food.usdz; sourceTree = "<group>"; };
+		69F89965301058D2007176DF /* FeedingScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedingScene.swift; sourceTree = "<group>"; };
+		69F89967301058DE007176DF /* FeedingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedingController.swift; sourceTree = "<group>"; };
+		69F8996930105C4F007176DF /* ARManager+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARManager+Debug.swift"; sourceTree = "<group>"; };
+		69F8996A30105C4F007176DF /* ARManager+Interact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARManager+Interact.swift"; sourceTree = "<group>"; };
 		841E30FF1FC286F800F639ED /* StatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		84E14DE31F943834006B5204 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8BF2ED443AC34305ACD1BA89 /* HandCurlCallController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandCurlCallController.swift; sourceTree = "<group>"; };
@@ -129,6 +139,9 @@
 			children = (
 				69F89958300F17E8007176DF /* ARManager.swift */,
 				8BF2ED443AC34305ACD1BA89 /* HandCurlCallController.swift */,
+				69F89967301058DE007176DF /* FeedingController.swift */,
+				69F8996930105C4F007176DF /* ARManager+Debug.swift */,
+				69F8996A30105C4F007176DF /* ARManager+Interact.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -146,6 +159,7 @@
 			children = (
 				69F8995C300F17E8007176DF /* ARViewContainer.swift */,
 				69F8995D300F17E8007176DF /* ContentView.swift */,
+				69F89965301058D2007176DF /* FeedingScene.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -174,6 +188,7 @@
 				84E14DE31F943834006B5204 /* Main.storyboard */,
 				62800B2B300FD06D009658C0 /* bugEating.mp3 */,
 				69F89956300AF6AA007176DF /* Apple.usdz */,
+				69F89963301052D8007176DF /* flower_food.usdz */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -254,6 +269,7 @@
 				62800B28300DCACD009658C0 /* flower_habitat.usdz in Resources */,
 				62800B29300DCACD009658C0 /* butterfly.usdz in Resources */,
 				62800B2A300DCACD009658C0 /* butterfly_idle.usdz in Resources */,
+				69F89964301052D8007176DF /* flower_food.usdz in Resources */,
 				68A81B56200FE12E00A4ABCA /* LabelScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,10 +281,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69F89968301058DE007176DF /* FeedingController.swift in Sources */,
 				11BEDD9A201A8EBA00B93233 /* TemplateLabelNode.swift in Sources */,
+				69F89966301058D2007176DF /* FeedingScene.swift in Sources */,
 				68612C471F7B108A002209A3 /* Inceptionv3.mlmodel in Sources */,
 				68A81B54200FDD8A00A4ABCA /* Utilities.swift in Sources */,
 				841E31001FC286F900F639ED /* StatusViewController.swift in Sources */,
+				69F8996B30105C4F007176DF /* ARManager+Debug.swift in Sources */,
+				69F8996C30105C4F007176DF /* ARManager+Interact.swift in Sources */,
 				69F8995F300F17E8007176DF /* ContentView.swift in Sources */,
 				69F89960300F17E8007176DF /* ARViewContainer.swift in Sources */,
 				69F89961300F17E8007176DF /* AppMode.swift in Sources */,
@@ -419,7 +439,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5Y7SGX7UQ9;
+				DEVELOPMENT_TEAM = GHY9MX22BB;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				INFOPLIST_FILE = ARKitVision/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
@@ -443,7 +463,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5Y7SGX7UQ9;
+				DEVELOPMENT_TEAM = GHY9MX22BB;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				INFOPLIST_FILE = ARKitVision/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;

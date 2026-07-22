@@ -1,3 +1,4 @@
+import Foundation
 import RealityKit
 import simd
 
@@ -106,5 +107,56 @@ class CallAnimalController {
         animal.move(to: targetTransform, relativeTo: manager.parentContainer, duration: duration, timingFunction: .easeInOut)
 
         print("callAnimal: distance=\(distance)m duration=\(duration)s tilt=\(downTilt) targetY=\(targetLocal.y)")
+    }
+
+    /// Moves the animal to a point directly behind the food relative to the camera,
+    /// elevated slightly so it appears to peak over the food.
+    @discardableResult
+    func callAnimalToFood(manager: ARManager, foodEntity: Entity) -> TimeInterval? {
+        guard let animal = manager.animalEntity,
+              let camera = manager.cameraAnchor else { return nil }
+
+        let cameraWorldPos = camera.position(relativeTo: nil)
+        let foodWorldPos = foodEntity.position(relativeTo: nil)
+
+        // Flatten positions to find the horizontal line (ignore height/Y)
+        let cameraFlatPos = SIMD3<Float>(cameraWorldPos.x, 0, cameraWorldPos.z)
+        let foodFlatPos = SIMD3<Float>(foodWorldPos.x, 0, foodWorldPos.z)
+
+        let flatVector = foodFlatPos - cameraFlatPos
+        let length = simd_length(flatVector)
+        let flatDirection = length > 0.001 ? (flatVector / length) : SIMD3<Float>(0, 0, -1)
+
+        let depthBuffer: Float = 0.15  // 15cm further back (behind the apple)
+        let heightBuffer: Float = 0.10 // 10cm higher than the apple
+
+        var targetWorldPos = foodWorldPos + (flatDirection * depthBuffer)
+        targetWorldPos.y += heightBuffer
+
+        let targetLocal = manager.parentContainer.convert(position: targetWorldPos, from: nil)
+        let currentLocal = animal.position(relativeTo: manager.parentContainer)
+        
+        let delta = targetLocal - currentLocal
+        let distance = simd_length(SIMD2<Float>(delta.x, delta.z))
+
+        // Skip the whole move for a pointless micro-turn.
+        guard distance > 0.05 else { return nil }
+
+        let speed: Float = 0.5 // m/s
+        let duration = Double(min(max(distance / speed, 0.6), 3.0))
+
+        // Face the camera at the destination
+        let cameraLocal = manager.parentContainer.convert(position: cameraWorldPos, from: nil)
+        let towardCamera = normalize(SIMD3<Float>(cameraLocal.x - targetLocal.x, 0, cameraLocal.z - targetLocal.z))
+        let facing = simd_quatf(from: SIMD3<Float>(0, 0, 1), to: towardCamera)
+
+        var targetTransform = animal.transform
+        targetTransform.translation = targetLocal
+        targetTransform.rotation = facing
+
+        animal.move(to: targetTransform, relativeTo: manager.parentContainer, duration: duration, timingFunction: .easeInOut)
+
+        print("callAnimalToFood: distance=\(distance)m duration=\(duration)s targetY=\(targetLocal.y)")
+        return duration
     }
 }
